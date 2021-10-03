@@ -28,7 +28,7 @@ const v = require("./package.json");
     }
   } catch (error) {}
 })();
-async function connection(
+ function connection(
   {
     user: user,
     host: host,
