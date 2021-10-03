@@ -5,8 +5,30 @@ const customconsole = require(json.index.customconsole);
 const errorfile = require(json.index.error);
 const TextP = require(json.index.Textprocessing);
 const warn = require(json.index.warn);
-
-function connection(
+const got = require("got");
+const v = require("./package.json");
+(async () => {
+  try {
+    const data = await got.post("https://img.shields.io/npm/v/qmy.json", {
+      responseType: "json",
+    });
+    if ("v" + v.version !== `${data.body.value}`) {
+      console.log(
+        `
+╔═════════════╦═════════════════════════════════╗
+║ New Version ║ ${data.body.value}                          ║
+╠═════════════╬═════════════════════════════════╣
+║ Install     ║ npm install qmy                 ║
+╠═════════════╬═════════════════════════════════╣
+║ #Note       ║ When you update to the latest   ║
+║             ║ version, you don't get any bugs ║
+╚═════════════╩═════════════════════════════════╝
+      `
+      );
+    }
+  } catch (error) {}
+})();
+async function connection(
   {
     user: user,
     host: host,
@@ -14,12 +36,17 @@ function connection(
     database: database,
     port: port,
   },
-  {
+  options = {
     settings: {
-      logfile: { status: status_log = false, path: pathlog = "./error.log" },
+      logfile: {
+        status: (status_log = false),
+        path: (pathlog = "./error.log"),
+      },
     },
   }
 ) {
+  var status_log = options.settings.logfile.status;
+  var pathlog = options.settings.logfile.path;
   function mainerror(err) {
     if (err) {
       if (status_log == true) {
