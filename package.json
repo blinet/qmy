@@ -1,6 +1,6 @@
 {
   "name": "qmy",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Quick mysql is a powerful module that makes the mysql system easier, simpler and faster",
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,10 @@
   "author": "Arth",
   "dependencies": {
     "chalk": "^4.1.2",
-    "got": "^11.8.2"
+    "got": "^11.8.2",
+    "bignumber.js": "9.0.0",
+    "readable-stream": "2.3.7",
+    "safe-buffer": "5.1.2",
+    "sqlstring": "2.3.1"
   }
 }
