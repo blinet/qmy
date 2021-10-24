@@ -16,7 +16,7 @@
 Quick [mysql](https://www.mysql.com/) is a powerful module that makes the mysql system easier, simpler and faster
 
 - Speed
-- Uninterrupted connection
+- Unlimited connection without losing connection
 - Easy to use
 - High security
 
