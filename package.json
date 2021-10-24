@@ -25,12 +25,8 @@
   "license": "Apache-2.0",
   "author": "Arth",
   "dependencies": {
-    "bignumber.js": "9.0.0",
-    "chalk": "^4.1.2",
-    "got": "^11.8.2",
-    "mysql": "^2.18.1",
-    "readable-stream": "2.3.7",
-    "safe-buffer": "5.1.2",
-    "sqlstring": "2.3.1"
+   "chalk": "^4.1.2",
+   "got": "^11.8.2",
+   "mysql": "^2.18.1"
   }
 }
