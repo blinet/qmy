@@ -6,7 +6,7 @@ connection.get("<table>", "<PrimaryKey>", function (result) {
     //false
     console.log(false);
   } else if (result[0]) {
-    //true
+     //true
     console.log(result[0]);
   }
 });
