@@ -1,9 +1,0 @@
-{
-    "index":{
-        "mysql":"./src/mind/mysql",
-        "customconsole":"./src/methods/log/customconsole",
-        "error":"./src/methods/log/error",
-        "warn":"./src/methods/log/warn",
-        "Textprocessing":"./src/methods/Textprocessing"
-    }
-}
