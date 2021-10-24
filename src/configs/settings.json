@@ -1,0 +1,9 @@
+{
+  "settings": {
+    "support": "https://discord.gg/r7sgerWCcT",
+    "logfile": {
+      "path": "errors/error.log",
+      "folder": "errors"
+    }
+  }
+}

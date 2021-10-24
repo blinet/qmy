@@ -1,0 +1,36 @@
+{
+  "name": "qmy",
+  "version": "2.0.0",
+  "description": "Quick mysql is a powerful module that makes the mysql system easier, simpler and faster",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mysql",
+    "quickmysql",
+    "db",
+    "database",
+    "sql",
+    "quick"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/4i8/qmy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/4i8/qmy/issues"
+  },
+  "homepage": "https://github.com/4i8/qmy#readme",
+  "license": "Apache-2.0",
+  "author": "Arth",
+  "dependencies": {
+    "bignumber.js": "9.0.0",
+    "chalk": "^4.1.2",
+    "got": "^11.8.2",
+    "mysql": "^2.18.1",
+    "readable-stream": "2.3.7",
+    "safe-buffer": "5.1.2",
+    "sqlstring": "2.3.1"
+  }
+}
