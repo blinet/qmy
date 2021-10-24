@@ -127,8 +127,12 @@ function connection(
 *This function is used to get data from databases
 *
 * @example get("<table>", "<PrimaryKey>", function (result) {
-  console.log(result)
-})
+    if (!result[0]) {
+      console.log(false);
+    } else if (result[0]) {
+      console.log(result[0]);
+    }
+  });
 */
   this.get = function (table, PrimaryKey, callback) {
     return get(
