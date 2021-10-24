@@ -2,7 +2,13 @@
 const connection = require("../module/connection");
 //This function is used to get data from databases
 connection.get("<table>", "<PrimaryKey>", function (result) {
-  console.log(result[0]);
+  if (!result[0]) {
+    //false
+    console.log(false);
+  } else if (result[0]) {
+    //true
+    console.log(result[0]);
+  }
 });
 
 //This function is used to save data in databases
