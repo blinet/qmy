@@ -16,7 +16,7 @@ function set(
   function out(err) {
     return output(err, statuslog, pathlog);
   }
-  if (!table || !column || !values || !callback) {
+  if (!table || !column || typeof values == "undefined" || !callback) {
     return warn(
       "set",
       `
