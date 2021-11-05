@@ -16,7 +16,7 @@ function update(
   function out(err) {
     return output(err, statuslog, pathlog);
   }
-  if (!table || !column || !value || !PrimaryKey || !callback) {
+  if (!table || !column || typeof value == "undefined" || !PrimaryKey || !callback) {
     return warn(
       "update",
       `
