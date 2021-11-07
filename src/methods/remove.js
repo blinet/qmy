@@ -14,16 +14,15 @@ function remove(
   Connection,
   database
 ) {
+  const pkey = PrimaryKey.split(":");
   function out(err) {
     return output(err, statuslog, pathlog);
   }
-  if (!table || !PrimaryKey || !callback) {
+  if (!table || !PrimaryKey || pkey.length > 2 || pkey.length <= 1) {
     return warn(
       "remove",
       `
-      remove("<table>", "<PrimaryKey>", function (result) {
-        console.log(result)
-    })
+      remove("<table>", "<Where>:<PrimaryKey>")
       `
     );
   }
@@ -33,12 +32,14 @@ function remove(
       `DELETE FROM  ${sqlprocessor(database, "`")}.${sqlprocessor(
         table,
         "`"
-      )} WHERE  \`id\`='${PrimaryKey}'`,
+      )} WHERE  \`${pkey[0]}\` = '${pkey[1]}'`,
       function (err, result) {
         if (err) {
           return out(err);
         }
-        callback(result);
+        if (callback) {
+          callback(result);
+        }
       }
     );
   } catch (erroR) {

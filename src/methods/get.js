@@ -14,14 +14,21 @@ function get(
   Connection,
   database
 ) {
+  const pkey = PrimaryKey.split(":");
   function out(err) {
     return output(err, statuslog, pathlog);
   }
-  if (!table || !PrimaryKey || !callback) {
+  if (
+    !table ||
+    !PrimaryKey ||
+    !callback ||
+    pkey.length > 2 ||
+    pkey.length <= 1
+  ) {
     return warn(
       "get",
       `
-      get("<table>", "<PrimaryKey>", function (result) {
+      get("<table>", "<Where>:<PrimaryKey>", function (result) {
        if(!result[0]) {
         console.log(false)
        }else if(result[0]) {
@@ -37,7 +44,7 @@ function get(
       `SELECT * FROM ${sqlprocessor(database, "`")}.${sqlprocessor(
         table,
         "`"
-      )} WHERE \`id\` = '${PrimaryKey}'`,
+      )} WHERE \`${pkey[0]}\` = '${pkey[1]}'`,
       function (err, result) {
         if (err) {
           return out(err);

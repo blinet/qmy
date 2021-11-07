@@ -16,13 +16,12 @@ function set(
   function out(err) {
     return output(err, statuslog, pathlog);
   }
-  if (!table || !column || typeof values == "undefined" || !callback) {
+  if (!table || !column || typeof values == "undefined") {
     return warn(
       "set",
       `
-      set({ "table": "<table>", "column": "<column>", "values": "<values>"}, function (result) {
-        console.log(result)
-    })//It is placed "," if there is more than one value or column
+      set({ "table": "<table>", "column": "<column>", "values": "<values>"})
+      //It is placed "," if there is more than one value or column
     
       `
     );
@@ -38,7 +37,9 @@ function set(
         if (err) {
           return out(err);
         }
-        callback(result);
+        if (callback) {
+          callback(result);
+        }
       }
     );
   } catch (erroR) {

@@ -1,6 +1,6 @@
 {
   "name": "qmy",
-  "version": "0.1.1-beta-",
+  "version": "0.2.2-beta",
   "description": "Quick mysql is a powerful module that makes the mysql system easier, simpler and faster",
   "main": "index.js",
   "scripts": {

@@ -126,35 +126,18 @@ function connection(
   /**
 *This function is used to get data from databases
 *
-* @example get("<table>", "<PrimaryKey>", function (result) {
-    if (!result[0]) {
-      console.log(false);
-    } else if (result[0]) {
-      console.log(result[0]);
-    }
-  });
+* @example get("<table>", "<Where>:<PrimaryKey>", function (result) {
+  if (!result[0]) {
+    //false
+    console.log(false);
+  } else if (result[0]) {
+    //true
+    console.log(result[0]);
+  }
+});
 */
   this.get = function (table, PrimaryKey, callback) {
     return get(
-      table,
-      PrimaryKey,
-      callback,
-      statuslog,
-      pathlog,
-      Connection,
-      database
-    );
-  };
-  // <- Data remove ->
-  /**
-*This function is used to remove data
-*
-* @example remove("<table>", "<PrimaryKey>", function (result) {
-    console.log(result)
-})
-*/
-  this.remove = function (table, PrimaryKey, callback) {
-    return remove(
       table,
       PrimaryKey,
       callback,
@@ -175,14 +158,29 @@ function connection(
   this.query = function (sql, callback) {
     return query(sql, callback, statuslog, pathlog, Connection);
   };
+  // <- Data remove ->
+  /**
+   *This function is used to remove data
+   *
+   * @example remove("<table>", "<Where>:<PrimaryKey>")
+   */
+  this.remove = function (table, PrimaryKey, callback) {
+    return remove(
+      table,
+      PrimaryKey,
+      callback,
+      statuslog,
+      pathlog,
+      Connection,
+      database
+    );
+  };
   // <- Data storage ->
   /**
-  *This function is used to save data in databases
-  *
-  * @example set({ "table": "<table>", "column": "<column>", "values": "<values>"}, function (result) {
-      console.log(result)
-  })//It is placed "," if there is more than one value or column
-  */
+   *This function is used to save data in databases
+   *
+   * @example set({ "table": "<table>", "column": "<column>", "values": "<values>"})//It is placed "," if there is more than one value or column
+   */
   this.set = function (
     { table: table, column: column, values: values },
     callback
@@ -198,12 +196,10 @@ function connection(
   };
   // <- Data update ->
   /**
- *This function is used to update data in databases
- *
- * @example update({ table: "<table>", column: "<column>", PrimaryKey: "<PrimaryKey>", value: "<value>" }, function (result) {
-   console.log(result)
-})
- */
+   *This function is used to update data in databases
+   *
+   * @example update({ table: "<table>", column: "<column>", PrimaryKey: "<Where>:<PrimaryKey>", value: "<value>" })
+   */
   this.update = function (
     { table: table, column: column, value: value, PrimaryKey: PrimaryKey },
     callback

@@ -13,16 +13,22 @@ function update(
   Connection,
   database
 ) {
+  const pkey = PrimaryKey.split(":");
   function out(err) {
     return output(err, statuslog, pathlog);
   }
-  if (!table || !column || typeof value == "undefined" || !PrimaryKey || !callback) {
+  if (
+    !table ||
+    !column ||
+    typeof value == "undefined" ||
+    !PrimaryKey ||
+    pkey.length > 2 ||
+    pkey.length <= 1
+  ) {
     return warn(
       "update",
       `
-      update({ table: "<table>", column: "<column>", PrimaryKey: "<PrimaryKey>", value: "<value>" }, function (result) {
-        console.log(result)
-    })
+      update({ table: "<table>", column: "<column>", PrimaryKey: "<Where>:<PrimaryKey>", value: "<value>" })
       `
     );
   }
@@ -32,12 +38,14 @@ function update(
       `UPDATE ${sqlprocessor(database, "`")}.${sqlprocessor(
         table,
         "`"
-      )} SET \`${column}\` = '${value}' WHERE \`id\` = '${PrimaryKey}'`,
+      )} SET \`${column}\` = '${value}' WHERE \`${pkey[0]}\` = '${pkey[1]}'`,
       function (err, result) {
         if (err) {
           return out(err);
         }
-        callback(result);
+        if (callback) {
+          callback(result);
+        }
       }
     );
   } catch (erroR) {
