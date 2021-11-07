@@ -23,9 +23,8 @@ const output = require("./src/methods/log/output");
     if ("v" + v.version !== `${data.body.value}`) {
       console.log(
         `
-╔═════════════╦═════════════════════════════════╗
-║ New Version ║ ${data.body.value}                          ║
-╠═════════════╬═════════════════════════════════╣
+# New Version - ${data.body.value}           
+╔═════════════╦═════════════════════════════════╗              
 ║ Install     ║ npm install qmy                 ║
 ╠═════════════╬═════════════════════════════════╣
 ║ #Note       ║ When you update to the latest   ║
