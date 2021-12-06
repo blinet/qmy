@@ -93,7 +93,8 @@ new qmy({
   port: 3306,
   user: "<user>",
 });
-* @example */
+*/
+/** @example */
 new qmy("uri");
 ```
 
@@ -128,7 +129,7 @@ get("<table>", "<Where>:<PrimaryKey>")
  * @example */
 get("users", "id:1111111111")
   .then((result) => {
-    console.log(false);
+    console.log(result);
   })
   .catch((err) => {
     console.log(err);
@@ -171,7 +172,7 @@ query("<sql>", { array: false })
 // <- Data storage ->
 /**
    *This function is used to save data in databases
-   * @param  {sign: <default:true>:boolean }
+   * @param  {sign: <default:",">:string }
    * @example */
     set({
     "table": "<table>",

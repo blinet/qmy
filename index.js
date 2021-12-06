@@ -121,7 +121,7 @@ function connection(
   });
 * Example of a <Where>:<PrimaryKey>
  @example get("users", "id:1111111111").then((result) => {
-    console.log(false);
+    console.log(result);
   }).catch((err) => {
     console.log(err);
   });
@@ -166,7 +166,7 @@ function connection(
   // <- Data storage ->
   /**
    *This function is used to save data in databases
-   * @param  {sign: <default:true>:boolean }
+   * @param  {sign: <default:",">:string }
    * @example set({
     "table": "<table>", 
     "column": "<column>",
