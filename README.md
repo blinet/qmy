@@ -84,8 +84,7 @@ TypeError: Cannot read property 'query' of undefined**
 > **create connection**
 
 ```js
-/**
-* @example 
+/** @example */
 new qmy({
   database: "<database>",
   host: "<host>",
@@ -93,7 +92,6 @@ new qmy({
   port: 3306,
   user: "<user>",
 });
-*/
 /** @example */
 new qmy("uri");
 ```
