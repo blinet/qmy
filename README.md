@@ -93,9 +93,8 @@ new qmy({
   port: 3306,
   user: "<user>",
 });
-* @example
+* @example */
 new qmy("uri");
-*/
 ```
 
 > **methods**
@@ -113,46 +112,55 @@ const connection = new qmy({
 
 // <-  Data get ->
 /**
-*This function is used to get data from databases
-* @param  {array: <default:false>:boolean }
-* @example 
-get("<table>", "<Where>:<PrimaryKey>").then((result) => {
+ *This function is used to get data from databases
+ * @param  {array: <default:false>:boolean }
+ * @example
+ */
+get("<table>", "<Where>:<PrimaryKey>")
+  .then((result) => {
     console.log(result);
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(err);
   });
-* Example of a <Where>:<PrimaryKey>
-* @example
- get("users", "id:1111111111").then((result) => {
+/**
+ * Example of a <Where>:<PrimaryKey>
+ * @example */
+get("users", "id:1111111111")
+  .then((result) => {
     console.log(false);
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(err);
   });
-*/
+
 // <- query ->
 /**
-*This is a query function that you can perform any operation with this function. 
-*This function is useful for developers who want to perform an operation that is not available in existing functions
-* @param  {array: <default:true>:boolean }
-* @example 
-query("<sql>",{ array: false }).then((result) => {
-    console.log(result)
-}).catch((err) => {
+ *This is a query function that you can perform any operation with this function.
+ *This function is useful for developers who want to perform an operation that is not available in existing functions
+ * @param  {array: <default:true>:boolean }
+ * @example */
+query("<sql>", { array: false })
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((err) => {
     console.log(err);
   });
-*/
+
 // <- Data remove ->
 /**
   *This function is used to remove data
   *
-  * @example 
-  * remove("<table>", "<Where>:<PrimaryKey>").then((result) => {
+  * @example */
+  remove("<table>", "<Where>:<PrimaryKey>").then((result) => {
     console.log(result)
  }).catch((err) => {
     console.log(err);
   });
+  /**
   * Example of a <Where>:<PrimaryKey>
-  * @example 
+  * @example */
   remove("users", "id:1111111111").then((result) => {
     console.log(result)
  }).catch((err) => {
@@ -164,9 +172,9 @@ query("<sql>",{ array: false }).then((result) => {
 /**
    *This function is used to save data in databases
    * @param  {sign: <default:true>:boolean }
-   * @example 
+   * @example */
     set({
-    "table": "<table>", 
+    "table": "<table>",
     "column": "<column>",
      "values": "<values>"
     }).then((result) => {
@@ -174,23 +182,24 @@ query("<sql>",{ array: false }).then((result) => {
  }).catch((err) => {
     console.log(err);
   });
+   /**
    //It is placed sign if there is more than one value or column
-  * @example 
+  * @example */
   set({
-    "table": "users", 
+    "table": "users",
     "column": "id - arth - color",
     "values": "1111111111 - arth - red"}, { sign:"-" }).then((result) => {
     console.log(result)
  }).catch((err) => {
     console.log(err);
   });
-   */
+
 
 // <- Data update ->
 /**
    *This function is used to update data in databases
    *
-   * @example
+   * @example */
     update({
        table: "<table>",
        column: "<column>",
@@ -201,8 +210,9 @@ query("<sql>",{ array: false }).then((result) => {
  }).catch((err) => {
     console.log(err);
   });
+   /**
    * Example of a <Where>:<PrimaryKey>
-  * @example
+  * @example*/
    update({
        table: "users",
        column: "name",
@@ -213,7 +223,6 @@ query("<sql>",{ array: false }).then((result) => {
  }).catch((err) => {
     console.log(err);
   });
-   */
 ```
 
 ## Links
