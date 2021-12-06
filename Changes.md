@@ -30,3 +30,12 @@
   > 8-The log files have been rearranged
   > 9-Some internal features have been added
   > 10-A new option has been added**
+- **[2021-12-5]**:
+  > **1-All mySQL options have been added, you can also put a uri to connect to MYSQL
+  > 2-The LogFile option has been removed
+  > 3-Callback was replaced to promise(then and catch and finally)
+  > 4-Internal issues in Functions have been fixed
+  > 5-The set function have been made now you can place a custom Sign
+  > 6-Internal issues with file have been fixed
+  > 7-result of get function be object and you have a option you can make Array
+  > 8-result of query function be Array and you have a option you can make object**

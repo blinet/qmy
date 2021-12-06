@@ -2,57 +2,31 @@
  * @Copyright 2021 Arth(https://github.com/4i8/)
  */
 const sqlprocessor = require("./other/sqlprocessor");
-const warn = require("./log/warn");
-const output = require("./log/output");
-const e = require("../configs/error.json");
 function set(
   { table: table, column: column, values: values },
-  callback,
-  statuslog,
-  pathlog,
   Connection,
-  database
+  database,
+  options
 ) {
-  function out(err) {
-    return output(err, statuslog, pathlog);
-  }
-  if (!table || !column || typeof values == "undefined") {
-    return warn(
-      "set",
-      `
-      set({ "table": "<table>", "column": "<column>", "values": "<values>"})
-      //It is placed "," if there is more than one value or column
-    
-      `
-    );
-  }
-  //START
-  try {
+  return new Promise((resolve, reject) => {
+    //START
     Connection.query(
       `INSERT INTO ${sqlprocessor(database, "`")}.${sqlprocessor(
         table,
         "`"
-      )} (${sqlprocessor(column, "`")}) VALUES (${sqlprocessor(values, `'`)});`,
+      )} (${sqlprocessor(column, "`", options.sign)}) VALUES (${sqlprocessor(
+        values,
+        "'",
+        options.sign
+      )});`,
       function (err, result) {
         if (err) {
-          return out(err);
+          return reject(err);
         }
-        if (callback) {
-          callback(result);
-        }
+        resolve(result);
       }
     );
-  } catch (erroR) {
-    if (erroR.toString() === e.query_undefined) {
-      out(
-        `Solve this problem in this link:
-https://github.com/4i8/qmy/tree/main/example/Direct_connection_problem\n` +
-          e.query_undefined
-      );
-    } else {
-      out(erroR);
-    }
-  }
+  });
   //END
 }
 module.exports = set;
