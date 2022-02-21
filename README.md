@@ -29,7 +29,7 @@ yarn add qmy
 
 ## Announcement 
 
-> **Adding connect() will resolve the process by calling the then() function and it will give you a notification that the connection was successful if there is an error, it will reject the process and you can call the catch() function and it will give you the error**
+> **(+)connect() will resolve the process by calling the then() function and it will give you a notification that the connection was successful if there is an error, it will reject the process and you can call the catch() function and it will give you the error<br>(-)Remove Reminders New Versions**
 
 ## Example usage
 
@@ -75,7 +75,6 @@ yarn add qmy
 Use the username and password from your MySQL database or use uri**
 
 ```js
-/** @example */
 const qmy = require("qmy");
 
 const connection = new qmy({
