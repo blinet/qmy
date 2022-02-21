@@ -4,6 +4,7 @@
 const mysql = require("mysql");
 const got = require("got");
 const v = require("./package.json");
+const events = require("events");
 //METHODS
 const get = require("./src/methods/get");
 const set = require("./src/methods/set");
@@ -12,6 +13,7 @@ const remove = require("./src/methods/remove");
 const query = require("./src/methods/query");
 const custom = require("./src/methods/log/custom");
 const parseUrl = require("./src/methods/other/parseUrl");
+const EventEmitter = new events();
 /**
  * Create a new Connection 
  ```js
@@ -68,6 +70,9 @@ function connection(
   const reConnect = (connection, error) =>
     new Promise((resolve) => {
       if (!error.toString().includes("Packets out of order")) {
+        setTimeout(() => {
+          EventEmitter.emit("error", error);
+        }, 1);
         throw error;
       }
       connection.destroy();
@@ -82,10 +87,14 @@ function connection(
       con.connect(async (err) => {
         if (err) {
           if (!err.code.toString().includes("Packets out of order")) {
-            throw err;
+            setTimeout(() => {
+              EventEmitter.emit("error", err);
+            }, 1);
           }
           try {
-            throw err;
+            setTimeout(() => {
+              EventEmitter.emit("error", err);
+            }, 1);
           } catch (e) {
             await reConnect(con, e);
             Connect();
@@ -93,6 +102,9 @@ function connection(
         } else {
           if (connectionlog == true)
             custom("Connect To MYSQL Successfully", "1EF59D");
+          setTimeout(() => {
+            EventEmitter.emit("connect", "Connect To MYSQL Successfully");
+          }, 1);
           return resolve(con);
         }
       });
@@ -109,32 +121,37 @@ function connection(
     });
   (async () => await connection())();
   //<- START ->
+  // <-connect->
+  /**
+   *connect() will resolve the operation by calling the then() function and it will give you a notification that the connection was successful if there is an error, it will do the reject() function
+* @example 
+connect()
+  .then(() => {
+    //do something
+    //...
+  })
+  .catch((error) => {
+    //do something
+    //...
+    console.log(error);
+  });
 
-  // <-  Data get ->
-  /**
-*This function is used to get data from databases
-* @param  {array: <default:false>:boolean }
-* @example get("<table>", "<Where>:<PrimaryKey>").then((result) => {
-    console.log(result);
-  }).catch((err) => {
-    console.log(err);
-  });
-* Example of a <Where>:<PrimaryKey>
- @example get("users", "id:1111111111").then((result) => {
-    console.log(result);
-  }).catch((err) => {
-    console.log(err);
-  });
-*/
-  this.get = function (table, PrimaryKey, options = { array: false }) {
-    return get(table, PrimaryKey, Connection, database, options);
+   */
+  this.connect = function () {
+    return new Promise((resolve, reject) => {
+      EventEmitter.on("connect", () => {
+        resolve();
+      });
+      EventEmitter.on("error", (error) => {
+        reject(error);
+      });
+    });
   };
-  // <- query ->
+  // <-query->
   /**
-*This is a query function that you can perform any operation with this function. 
-*This function is useful for developers who want to perform an operation that is not available in existing functions
+*Use SQL statements to read from (or write to) a MySQL database. This is also called "to query" the database. The connection object created in the example above, has a method for querying the database
 * @param  {array: <default:true>:boolean }
-* @example query("<sql>",{ array: false }).then((result) => {
+* @example query("<SQL statements>").then((result) => {
     console.log(result)
 }).catch((err) => {
     console.log(err);
@@ -143,9 +160,28 @@ function connection(
   this.query = function (sql, options = { array: true }) {
     return query(sql, Connection, options);
   };
-  // <- Data remove ->
+  // <-get->
   /**
-  *This function is used to remove data
+*	used to select data from a database
+* @param  {array: <default:false>:boolean }
+* @example get("<table>", "<Where>:<PrimaryKey>").then((result) => {
+    console.log(result);
+  }).catch((err) => {
+    console.log(err);
+  });
+* Example of a <Where>:<PrimaryKey>
+ @example get("users", "id:2324249073").then((result) => {
+    console.log(result);
+  }).catch((err) => {
+    console.log(err);
+  });
+*/
+  this.get = function (table, PrimaryKey, options = { array: false }) {
+    return get(table, PrimaryKey, Connection, database, options);
+  };
+  // <-remove->
+  /**
+  *used to delete existing records in a table	
   *
   * @example remove("<table>", "<Where>:<PrimaryKey>").then((result) => {
     console.log(result)
@@ -154,7 +190,7 @@ function connection(
   });
   * Example of a <Where>:<PrimaryKey>
  @example 
-  remove("users", "id:1111111111").then((result) => {
+  remove("users", "id:2324249073").then((result) => {
     console.log(result)
  }).catch((err) => {
     console.log(err);
@@ -163,9 +199,9 @@ function connection(
   this.remove = function (table, PrimaryKey) {
     return remove(table, PrimaryKey, Connection, database, options);
   };
-  // <- Data storage ->
+  // <-set->
   /**
-   *This function is used to save data in databases
+   *Tused to insert new records in a table	
    * @param  {sign: <default:",">:string }
    * @example set({
     "table": "<table>", 
@@ -179,8 +215,8 @@ function connection(
    //It is placed sign if there is more than one value or column
    @example set({
     "table": "users", 
-    "column": "id - arth - color",
-    "values": "1111111111 - arth - red"}, { sign:"-" }).then((result) => {
+    "column": "id - name - color",
+    "values": "2324249073 - arth - red"}, { sign:"-" }).then((result) => {
     console.log(result)
  }).catch((err) => {
     console.log(err);
@@ -199,7 +235,7 @@ function connection(
   };
   // <- Data update ->
   /**
-   *This function is used to update data in databases
+   *used to modify the existing records in a table
    *
    * @example update({
        table: "<table>",
@@ -216,7 +252,7 @@ function connection(
  update({
        table: "users",
        column: "name",
-       PrimaryKey: "id:1111111111",
+       PrimaryKey: "id:2324249073",
        value: "arth",
      }).then((result) => {
     console.log(result)

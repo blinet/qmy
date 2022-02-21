@@ -1,6 +1,6 @@
 <div align="center">
   <p>
- <a href="https://www.npmjs.com/package/qmy"><img  src="https://gcdn.pbrd.co/images/iT2RoGwPO1f9.png?o=1" width="400" alt="qmy" /></a>
+ <a href="https://www.npmjs.com/package/qmy"><img  src="./logo/Qmy.png" width="400" alt="qmy" /></a>
   </p>
   <p>
  <a href="https://github.com/4i8/"><img src="https://img.shields.io/static/v1?label=powered%20by&message=Arth&color=000&style=for-the-badge&logo=Windows%20Terminal&logoColor=fff"/></a>
@@ -27,16 +27,9 @@ npm install qmy
 yarn add qmy
 ```
 
-## Update
+## Announcement 
 
-> **1-All mySQL options have been added, you can also put a uri to connect to MYSQL
-> 2-The LogFile option has been removed
-> 3-Callback was replaced to promise(then and catch and finally)
-> 4-Internal issues in Functions have been fixed
-> 5-The set function have been made now you can place a custom Sign
-> 6-Internal issues with file have been fixed
-> 7-result of get function be object and you have a option you can make Array
-> 8-result of query function be Array and you have a option you can make object**
+> **Adding connect() will resolve the operation by calling the then() function and it will give you a notification that the connection was successful if there is an error, it will do the reject() function**
 
 ## Example usage
 
@@ -74,29 +67,69 @@ yarn add qmy
 
 ### #Note
 
-**When connection Create,please wait for tow seconds
-when requesting data
-and do not request data directly when running in order not to get this error:
-TypeError: Cannot read property 'query' of undefined**
-
-##### Solve this problem in this link: [Direct_connection_problem](https://github.com/4i8/qmy/tree/main/example/Direct_connection_problem)
+##### Direct connection problem solving: [Here](#connect)
 
 > **create connection**
 
+**Start by creating a connection to the database.
+Use the username and password from your MySQL database or use uri**
+
 ```js
 /** @example */
-new qmy({
+const qmy = require("qmy");
+
+const connection = new qmy({
   database: "<database>",
   host: "<host>",
   password: "<password>",
   port: 3306,
   user: "<user>",
 });
-/** @example */
-new qmy("uri");
 ```
 
-> **methods**
+## Documentation
+
+<table>
+  <tr>
+    <th>Method</th>
+    <th>Description</th>
+    <th>explain</th>
+  <tr>
+    <td>connect</td>
+    <td>connect() will resolve the operation by calling the then() function and it will give you a notification that the connection was successful if there is an error, it will do the reject() function
+</td>
+    <td><a href=#connect>Go to example</a></td>
+  </tr>
+   <tr>
+    <td>query</td>
+    <td>Use SQL statements to read from (or write to) a MySQL database. This is also called "to query" the database.
+The connection object created in the example above, has a method for querying the database</td>
+    <td><a href=#query>Go to example</a></td>
+  </tr>
+     <tr>
+    <td>get</td>
+    <td>used to select data from a database</td>
+    <td><a href=#get>Go to example</a></td>
+  </tr>
+    <tr>
+    <td>remove</td>
+    <td>used to delete existing records in a table</td>
+    <td><a href=#remove>Go to example</a></td>
+  </tr>
+    <tr>
+    <td>set</td>
+    <td>used to insert new records in a table</td>
+    <td><a href=#set>Go to example</a></td>
+  </tr>
+   </tr>
+    <tr>
+    <td>update</td>
+    <td>used to modify the existing records in a table</td>
+    <td><a href=#update>Go to example</a></td>
+  </tr>
+</table>
+
+## connect
 
 ```js
 const qmy = require("qmy");
@@ -108,119 +141,183 @@ const connection = new qmy({
   port: 3306,
   user: "<user>",
 });
-
-// <-  Data get ->
-/**
- *This function is used to get data from databases
- * @param  {array: <default:false>:boolean }
- * @example
- */
-get("<table>", "<Where>:<PrimaryKey>")
-  .then((result) => {
-    console.log(result);
+connection
+  .connect()
+  .then(() => {
+    //do something
+    //...
   })
-  .catch((err) => {
-    console.log(err);
+  .catch((error) => {
+    //do something
+    //...
+    console.log(error);
   });
-/**
- * Example of a <Where>:<PrimaryKey>
- * @example */
-get("users", "id:1111111111")
-  .then((result) => {
-    console.log(result);
+```
+
+## query
+
+```js
+const qmy = require("qmy");
+
+const connection = new qmy({
+  database: "<database>",
+  host: "<host>",
+  password: "<password>",
+  port: 3306,
+  user: "<user>",
+});
+connection
+  .connect()
+  .then(() => {
+    connection
+      .query("<SQL statements>")
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   })
-  .catch((err) => {
-    console.log(err);
+  .catch((error) => {
+    //do something
+    //...
+    console.log(error);
   });
+```
 
-// <- query ->
-/**
- *This is a query function that you can perform any operation with this function.
- *This function is useful for developers who want to perform an operation that is not available in existing functions
- * @param  {array: <default:true>:boolean }
- * @example */
-query("<sql>", { array: false })
-  .then((result) => {
-    console.log(result);
+## get
+
+```js
+const qmy = require("qmy");
+
+const connection = new qmy({
+  database: "<database>",
+  host: "<host>",
+  password: "<password>",
+  port: 3306,
+  user: "<user>",
+});
+connection
+  .connect()
+  .then(() => {
+    connection
+      .get("<table>", "<Where>:<PrimaryKey>")
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   })
-  .catch((err) => {
-    console.log(err);
+  .catch((error) => {
+    //do something
+    //...
+    console.log(error);
   });
+```
 
-// <- Data remove ->
-/**
-  *This function is used to remove data
-  *
-  * @example */
-  remove("<table>", "<Where>:<PrimaryKey>").then((result) => {
-    console.log(result)
- }).catch((err) => {
-    console.log(err);
-  });
-  /**
-  * Example of a <Where>:<PrimaryKey>
-  * @example */
-  remove("users", "id:1111111111").then((result) => {
-    console.log(result)
- }).catch((err) => {
-    console.log(err);
-  });
-   */
+## remove
 
-// <- Data storage ->
-/**
-   *This function is used to save data in databases
-   * @param  {sign: <default:",">:string }
-   * @example */
-    set({
-    "table": "<table>",
-    "column": "<column>",
-     "values": "<values>"
-    }).then((result) => {
-    console.log(result)
- }).catch((err) => {
-    console.log(err);
-  });
-   /**
-   //It is placed sign if there is more than one value or column
-  * @example */
-  set({
-    "table": "users",
-    "column": "id - arth - color",
-    "values": "1111111111 - arth - red"}, { sign:"-" }).then((result) => {
-    console.log(result)
- }).catch((err) => {
-    console.log(err);
-  });
+```js
+const qmy = require("qmy");
 
-
-// <- Data update ->
-/**
-   *This function is used to update data in databases
-   *
-   * @example */
-    update({
-       table: "<table>",
-       column: "<column>",
-       PrimaryKey: "<Where>:<PrimaryKey>",
-       value: "<value>",
-     }).then((result) => {
-    console.log(result)
- }).catch((err) => {
-    console.log(err);
+const connection = new qmy({
+  database: "<database>",
+  host: "<host>",
+  password: "<password>",
+  port: 3306,
+  user: "<user>",
+});
+connection
+  .connect()
+  .then(() => {
+    connection
+      .remove("<table>", "<Where>:<PrimaryKey>")
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+  .catch((error) => {
+    //do something
+    //...
+    console.log(error);
   });
-   /**
-   * Example of a <Where>:<PrimaryKey>
-  * @example*/
-   update({
-       table: "users",
-       column: "name",
-       PrimaryKey: "id:1111111111",
-       value: "arth",
-     }).then((result) => {
-    console.log(result)
- }).catch((err) => {
-    console.log(err);
+```
+
+## set
+
+```js
+const qmy = require("qmy");
+
+const connection = new qmy({
+  database: "<database>",
+  host: "<host>",
+  password: "<password>",
+  port: 3306,
+  user: "<user>",
+});
+connection
+  .connect()
+  .then(() => {
+    connection
+      .set(
+        {
+          table: "users",
+          column: "id - name - color",
+          values: "2324249073 - arth - red",
+        },
+        { sign: "-" }
+      )
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+  .catch((error) => {
+    //do something
+    //...
+    console.log(error);
+  });
+```
+
+## update
+
+```js
+const qmy = require("qmy");
+
+const connection = new qmy({
+  database: "<database>",
+  host: "<host>",
+  password: "<password>",
+  port: 3306,
+  user: "<user>",
+});
+connection
+  .connect()
+  .then(() => {
+    connection
+      .update({
+        table: "users",
+        column: "name",
+        PrimaryKey: "id:2324249073",//<Where>:<PrimaryKey>
+        value: "arth",
+      })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+  .catch((error) => {
+    //do something
+    //...
+    console.log(error);
   });
 ```
 
@@ -228,8 +325,12 @@ query("<sql>", { array: false })
 
 - [Twiter](https://twitter.com/onlyarth)
 - [Github](https://github.com/4i8)
-- Documentation#soon
+- [Documentation](#documentation)
 
 ## License
 
 - [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+
+```

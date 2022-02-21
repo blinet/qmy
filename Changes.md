@@ -13,13 +13,13 @@
 
 #Changes:
 
-- **[2021-10-03]**:
+- **[03 / 10 / 2021]**:
   > **Fix a minor bug in main code**
-- **[2021-10-04]**:
+- **[04 / 10 / 2021]**:
   > **A reminder was added to add a new version**
-- **[2021-10-9]**:
+- **[9 / 10 / 2021]**:
   > **Fix a minor bug in main code**
-- **[2021-10-24]**:
+- **[24 / 10 / 2021]**:
   > **1-The disconnection issue has been fixed
   > 2-The options issue has been fixed
   > 3-The log file issue has been fixed
@@ -30,7 +30,7 @@
   > 8-The log files have been rearranged
   > 9-Some internal features have been added
   > 10-A new option has been added**
-- **[2021-12-5]**:
+- **[5 / 12 / 2021]**:
   > **1-All mySQL options have been added, you can also put a uri to connect to MYSQL
   > 2-The LogFile option has been removed
   > 3-Callback was replaced to promise(then and catch and finally)
@@ -39,3 +39,5 @@
   > 6-Internal issues with file have been fixed
   > 7-result of get function be object and you have a option you can make Array
   > 8-result of query function be Array and you have a option you can make object**
+- **[21 / 02 / 2022]**: 
+  > **Adding connect() will resolve the operation by calling the then() function and it will give you a notification that the connection was successful if there is an error, it will do the reject() function**
