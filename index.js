@@ -273,26 +273,26 @@ connect()
       options
     );
   };
-  (async () => {
-    try {
-      const data = await got.post("https://img.shields.io/npm/v/qmy.json", {
-        responseType: "json",
-      });
-      if ("v" + v.version !== `${data.body.value}`) {
-        console.log(
-          `
-# New Version - ${data.body.value}           
-╔═════════════╦═════════════════════════════════╗              
-║ Install     ║ npm install qmy                 ║
-╠═════════════╬═════════════════════════════════╣
-║ #Note       ║ When you update to the latest   ║
-║             ║ version, you don't get any bugs ║
-╚═════════════╩═════════════════════════════════╝
-      `
-        );
-      }
-    } catch (error) {}
-  })();
+//   (async () => {
+//     try {
+//       const data = await got.post("https://img.shields.io/npm/v/qmy.json", {
+//         responseType: "json",
+//       });
+//       if ("v" + v.version !== `${data.body.value}`) {
+//         console.log(
+//           `
+// # New Version - ${data.body.value}           
+// ╔═════════════╦═════════════════════════════════╗              
+// ║ Install     ║ npm install qmy                 ║
+// ╠═════════════╬═════════════════════════════════╣
+// ║ #Note       ║ When you update to the latest   ║
+// ║             ║ version, you don't get any bugs ║
+// ╚═════════════╩═════════════════════════════════╝
+//       `
+//         );
+//       }
+//     } catch (error) {}
+//   })();
   //<- END ->
 }
 module.exports = connection;
