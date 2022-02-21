@@ -40,4 +40,4 @@
   > 7-result of get function be object and you have a option you can make Array
   > 8-result of query function be Array and you have a option you can make object**
 - **[21 / 02 / 2022]**: 
-  > **Adding connect() will resolve the operation by calling the then() function and it will give you a notification that the connection was successful if there is an error, it will do the reject() function**
+  > **Adding connect() will resolve the process by calling the then() function and it will give you a notification that the connection was successful if there is an error, it will reject the process and you can call the catch() function and it will give you the error**
