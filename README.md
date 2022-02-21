@@ -96,7 +96,7 @@ const connection = new qmy({
     <th>explain</th>
   <tr>
     <td>connect</td>
-    <td>connect() will resolve the operation by calling the then() function and it will give you a notification that the connection was successful if there is an error, it will do the reject() function
+    <td>connect() will resolve the process by calling the then() function and it will give you a notification that the connection was successful if there is an error, it will reject the process and you can call the catch() function and it will give you the error
 </td>
     <td><a href=#connect>Go to example</a></td>
   </tr>

@@ -123,7 +123,7 @@ function connection(
   //<- START ->
   // <-connect->
   /**
-   *connect() will resolve the operation by calling the then() function and it will give you a notification that the connection was successful if there is an error, it will do the reject() function
+   *connect() will resolve the process by calling the then() function and it will give you a notification that the connection was successful if there is an error, it will reject the process and you can call the catch() function and it will give you the error
 * @example 
 connect()
   .then(() => {
