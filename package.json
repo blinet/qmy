@@ -1,45 +1,11 @@
 {
-  "_args": [
-    [
-      "qmy@1.1.5",
-      "C:\\Users\\dell\\Desktop\\g"
-    ]
-  ],
-  "_from": "qmy@1.1.5",
-  "_id": "qmy@1.1.5",
-  "_inBundle": false,
-  "_integrity": "sha512-gW9Z5uRZD/1t1ikqv0xg37BAK3dxXN1ccqhQqOkR/u+sRWaJEN15+S0IGhE26ZvEkKcCW8R0Z5z8vQqeBysIXQ==",
-  "_location": "/qmy",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "version",
-    "registry": true,
-    "raw": "qmy@1.1.5",
-    "name": "qmy",
-    "escapedName": "qmy",
-    "rawSpec": "1.1.5",
-    "saveSpec": null,
-    "fetchSpec": "1.1.5"
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/qmy/-/qmy-1.1.5.tgz",
-  "_spec": "1.1.5",
-  "_where": "C:\\Users\\dell\\Desktop\\g",
-  "author": {
-    "name": "Arth"
-  },
-  "bugs": {
-    "url": "https://github.com/4i8/qmy/issues"
-  },
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "got": "^11.8.2",
-    "mysql": "^2.18.1"
-  },
+  "name": "qmy",
+  "version": "1.1.0-Stable",
   "description": "Quick mysql is a powerful module that makes the mysql system easier, simpler and faster",
-  "homepage": "https://github.com/4i8/qmy#readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "keywords": [
     "mysql",
     "quickmysql",
@@ -48,15 +14,19 @@
     "sql",
     "quick"
   ],
-  "license": "Apache-2.0",
-  "main": "index.js",
-  "name": "qmy",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/4i8/qmy.git"
+    "url": "https://github.com/4i8/qmy.git"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bugs": {
+    "url": "https://github.com/4i8/qmy/issues"
   },
-  "version": "1.1.5"
+  "homepage": "https://github.com/4i8/qmy#readme",
+  "license": "Apache-2.0",
+  "author": "Arth",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "got": "^11.8.2",
+    "mysql": "^2.18.1"
+  }
 }

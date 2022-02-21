@@ -1,6 +1,6 @@
 <div align="center">
   <p>
- <a href="https://www.npmjs.com/package/qmy"><img  src="./logo/Qmy.png" width="400" alt="qmy" /></a>
+ <a href="https://www.npmjs.com/package/qmy"><img  src="https://raw.githubusercontent.com/4i8/qmy/main/logo/Qmy.png" width="400" alt="qmy" /></a>
   </p>
   <p>
  <a href="https://github.com/4i8/"><img src="https://img.shields.io/static/v1?label=powered%20by&message=Arth&color=000&style=for-the-badge&logo=Windows%20Terminal&logoColor=fff"/></a>
